@@ -31,6 +31,40 @@ struct Home: View {
             }
             .padding()
         }
+        .overlay(alignment: .bottom) {
+            // MARK: 新增按鈕
+            Button {
+                taskVM.openEditTask.toggle()
+            } label: {
+                Label {
+                    Text("新增任務")
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                } icon: {
+                    Image(systemName: "plus.app.fill")
+                }
+                .foregroundColor(.white)
+                .padding(.vertical, 12)
+                .padding(.horizontal)
+                .background(.black, in: Capsule())
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background{
+                LinearGradient(colors: [
+                    .white.opacity(0.05),
+                    .white.opacity(0.4),
+                    .white.opacity(0.7),
+                    .white
+                ], startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
+            }
+            
+        }
+        .fullScreenCover(isPresented: $taskVM.openEditTask) {
+            AddTask()
+                .environmentObject(taskVM)
+        }
     }
     
     @ViewBuilder

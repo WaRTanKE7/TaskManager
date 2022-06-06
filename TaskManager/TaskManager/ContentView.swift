@@ -6,16 +6,15 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
-    
     var body: some View {
         NavigationView  {
             Home()
                 .navigationBarTitle("任務管理器")
                 .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationViewStyle(.stack)
     }
 }
 
